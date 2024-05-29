@@ -28,7 +28,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Log in to Docker Hub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3.2.0
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -42,6 +42,7 @@ jobs:
     
     # Container build and push to a Azure Container registry (ACR)
     - run: |
+        docker login ${{ env.REGISTRY_NAME }}.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
         docker build . -t testacr56.azurecr.io/myimage:${{ github.sha }}
         docker push testacr56.azurecr.io/myimage:${{ github.sha }}
         
