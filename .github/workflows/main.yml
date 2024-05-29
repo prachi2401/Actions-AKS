@@ -23,7 +23,7 @@ permissions:
 env:
   REGISTRY_NAME: testacr56
   CLUSTER_NAME: TestAKS
-  CLUSTER_RESOURCE_GROUP: Prachi_RG
+  CLUSTER_RESOURCE_GROUP: Prachi-RG
   NAMESPACE: default
   
 jobs:
@@ -60,7 +60,7 @@ jobs:
     
     - uses: azure/aks-set-context@v3
       with:
-         resource-group: 'Prachi_RG'
+         resource-group: 'Prachi-RG'
          cluster-name: 'TestAKS'    
         # Create namespace if doesn't exist
     - run: |
