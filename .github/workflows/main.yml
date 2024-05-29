@@ -36,7 +36,7 @@ jobs:
     # Connect to Azure Container registry (ACR)
     - uses: azure/docker-login@v1
       with:
-        
+        login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
         username: ${{ secrets.ACR_USERNAME }} 
         password: ${{ secrets.ACR_PASSWORD }}
     
@@ -45,6 +45,7 @@ jobs:
         
         docker build . -t testacr56.azurecr.io/myimage:${{ github.sha }}
         docker push testacr56.azurecr.io/myimage:${{ github.sha }}
+      
         
     - uses: azure/login@v1
       with:
